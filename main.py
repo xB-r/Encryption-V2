@@ -28,7 +28,7 @@ while True:
         generated_string = [*generate_random_string(plain_text_length)]
         plain_text_split = [*plain_text]
 
-        for z in range(plain_text_length):  # flag system needed to prevent overlap of replaces
+        for z in range(plain_text_length):
             replace_num_list.append(z)
 
         for y in plain_text_split:
@@ -57,7 +57,11 @@ while True:
 
         decrypted_text = ''
         for i in split_key:
-            decrypted_text += encrypted_text[i]
+            try:
+                decrypted_text += encrypted_text[i]
+            except IndexError:
+                print("Incorrect Key or Text!")
+                exit()
 
         print("Decrypted text: " + decrypted_text)
 
